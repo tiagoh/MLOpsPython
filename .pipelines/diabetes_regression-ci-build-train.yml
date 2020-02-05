@@ -45,7 +45,7 @@ stages:
   - job: "Get_Pipeline_ID"
     condition: and(succeeded(), eq(coalesce(variables['auto-trigger-training'], 'true'), 'true'))
     displayName: "Get Pipeline ID for execution"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - task: AzureCLI@1
@@ -80,7 +80,7 @@ stages:
     dependsOn: "Run_ML_Pipeline"
     condition: always()
     displayName: "Determine if evaluation succeeded and new model is registered"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - template: diabetes_regression-template-get-model-version.yml
@@ -91,7 +91,7 @@ stages:
   jobs:
   - job: "Deploy_ACI"
     displayName: "Deploy to ACI"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - template: diabetes_regression-template-get-model-version.yml
@@ -124,7 +124,7 @@ stages:
   jobs:
   - job: "Deploy_AKS"
     displayName: "Deploy to AKS"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - template: diabetes_regression-template-get-model-version.yml
@@ -158,7 +158,7 @@ stages:
   jobs:
   - job: "Deploy_Webapp"
     displayName: "Deploy to Webapp"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - template: diabetes_regression-template-get-model-version.yml
