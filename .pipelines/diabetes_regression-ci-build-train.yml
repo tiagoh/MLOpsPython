@@ -23,7 +23,7 @@ stages:
   jobs:
   - job: "Model_CI_Pipeline"
     displayName: "Model CI Pipeline"
-    container: mcr.microsoft.com/mlops/python:latest
+    container: eugenefedorenko/testflake8:latest
     timeoutInMinutes: 0
     steps:
     - template: azdo-base-pipeline.yml
